@@ -1,0 +1,28 @@
+title: tophackr blog
+description: tophackr blog
+baseurl: '/blog'
+url: ''
+repository: 'https://gitlab.com/tophackr/blog'
+email: tophackr@icloud.com
+logo: '/assets/brand.svg'
+services:
+  - name: Contact
+    url: mailto:tophackr@icloud.com
+  - name: Anonymous Cloud Storage
+    url: https://topdi.sk
+  - name: Theme for TeamSpeak 3
+    url: https://toptheme.ga
+  - name: Status
+    url: https://status.tophackr.com
+
+paginate: 1
+jekyll-mentions: http://localhost:4000/blog/u
+
+tag_page_layout: author
+tag_page_dir: u
+
+markdown: kramdown
+timezone: Europe/Moscow
+encoding: utf-8
+permalink: /:year-:month-:day/:title/
+exclude: [".gitignore", Gemfile, Gemfile.lock]
