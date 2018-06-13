@@ -1,0 +1,8 @@
+<div class="list-group">
+    {% for category in site.categories %}
+        {% assign category_url = category[0] | prepend: '/category/' | append: '/' %}
+        {% assign page_paginator = page.paginator.page | prepend: 'page' | append: '/' %}
+        {% assign page_url = page.url | remove: page_paginator %}
+        <a href="{{ category_url | relative_url }}" class="list-group-item list-group-item-action{% if page_url == category_url %} active{% elsif page.category == category %} active{% endif %}">{{ category[0] }}</a>
+    {% endfor %}
+</div>

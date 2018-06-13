@@ -1,0 +1,38 @@
+
+{% assign item = include.item %}
+<div class="mb-5">
+    <h1>
+        {% if item == page %}
+            {{ item.title }}
+        {% else %}
+            <a href="{{ item.url | relative_url }}">{{ item.title }}</a>
+        {% endif %}
+    </h1>
+    <ul class="list-inline">
+        <li class="list-inline-item">
+            <i class="far fa-calendar-alt"></i>
+            {{ item.date | date: '%B %d, %Y' }}
+        </li>
+        {% if item.tag %}
+            {% assign author = site.data.authors[item.tag] %}
+            <li class="list-inline-item">
+                <a href="{{ item.tag | prepend: '/u/' | append: '/' | relative_url }}">
+                    <img src="https://www.gravatar.com/avatar/{{ author.email | remove: ' ' | strip_newlines | downcase | md5 }}?d=retro" class="rounded align-text-top" width="20" height="20">
+                </a>
+                <a href="{{ item.tag | prepend: '/u/' | append: '/' | relative_url }}">{{ author.name }}</a>
+            </li>
+        {% endif %}
+        {% if item.category %}
+            <li class="list-inline-item">
+                <i class="fas fa-folder"></i>
+                {{ item.categories | join: ', ' }}
+            </li>
+        {% endif %}
+    </ul>
+    {% assign page_url = page.tag | prepend: '/u/' | append: '/' %}
+    {% if page.url == page_url %}
+        {{ item.excerpt }}
+    {% else %}
+        {{ item.content }}
+    {% endif %}
+</div>
