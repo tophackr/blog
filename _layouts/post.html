@@ -1,0 +1,20 @@
+---
+layout: default
+---
+
+{% include post_block.html item=page %}
+
+<div class="list-group my-5">
+    <li class="list-group-item font-weight-bold">Have a feedback?</li>
+    <a href="https://t.me/tophackr" class="list-group-item list-group-item-action">
+        <i class="fab fa-telegram-plane fa-lg fa-fw" style="color: #0088cc;"></i>
+        Let know on Telegram
+    </a>
+    <a href="https://twitter.com/tophackr_com" class="list-group-item list-group-item-action">
+        <i class="fab fa-twitter fa-lg fa-fw" style="color: #1da1f2;"></i>
+        Let know on Twitter
+    </a>
+    <li class="list-group-item font-weight-bold">
+        Found errors? <a href="{{ site.email | prepend: 'mailto:' }}" class="font-weight-normal">Get contact</a>.
+    </li>
+</div>

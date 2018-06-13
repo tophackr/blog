@@ -1,0 +1,36 @@
+---
+layout: default
+---
+
+{% assign author = site.data.authors[page.tag] %}
+<div class="row">
+    <div class="col-md-3">
+        <img src="https://www.gravatar.com/avatar/{{ author.email | remove: ' ' | strip_newlines | downcase | md5 }}?s=512&d=retro" class="rounded" width="255" height="255">
+        <h4 class="mt-3 mb-0">{{ author.name }}</h4>
+        <span class="h6 text-muted">{{ page.tag }}</span>
+        <p class="my-2">{{ author.bio }}</p>
+        <hr>
+        <div>
+            {% if author.location %}
+                <i class="fas fa-map-marker-alt fa-fw"></i>
+                {{ author.location }}
+                <br>
+            {% endif %}
+            {% if author.email %}
+                <i class="far fa-envelope fa-fw"></i>
+                <a href="{{ author.email | prepend: 'mailto:' }}">{{ author.email }}</a>
+                <br>
+            {% endif %}
+            {% if author.weburl %}
+                <i class="fas fa-link fa-fw"></i>
+                <a href="{{ author.weburl }}">{{ author.weburl }}</a>
+            {% endif %}
+        </div>
+    </div>
+    <div class="col-md-9">
+        {% assign page_author = page.posts | sort: 'date' | reverse %}
+        {% for post in page_author %}
+            {% include post_block.html item=post %}
+        {% endfor %}
+    </div>
+</div>

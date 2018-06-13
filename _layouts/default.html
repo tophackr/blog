@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+{% include header.html %}
+<body>
+    {% include navbar.html %}
+    <div class="page-header">
+        <div class="container mt-4">
+            <div class="row">
+                {% assign page_url = page.tag | prepend: '/u/' | append: '/' %}
+                {% if page.url != page_url %}
+                    <div class="col-md-9">
+                        {{ content }}
+                    </div>
+                    <div class="col-md-3">
+                        {% include right_block.html %}
+                    </div>
+                {% else %}
+                    <div class="col-md-12">
+                        {{ content }}
+                    </div>
+                {% endif %}
+            </div>
+            {% if paginator.previous_page %}
+                {% if paginator.previous_page == 1 %}
+                    {% assign prev_url = '/' | relative_url %}
+                {% else %}
+                    {% assign prev_url = paginator.previous_page | prepend: '/page' | append: '/' | relative_url %}
+                {% endif %}
+            {% endif %}
+            {% if paginator.next_page %}
+                {% assign next_url = paginator.next_page | prepend: '/page' | append: '/' | relative_url %}
+            {% endif %}
+
+            {% unless paginator %}
+                {% assign paginator = page.paginator %}
+                {% assign page_paginator = paginator.page | prepend: 'page' | append: '/' %}
+                {% assign page_url = page.url | remove: page_paginator %}
+
+                {% if paginator.previous_page %}
+                    {% if paginator.previous_page == 1 %}
+                        {% assign prev_url = page_url | relative_url %}
+                    {% else %}
+                        {% assign prev_url = paginator.previous_page | prepend: 'page' | prepend: page_url | append: '/' | relative_url %}
+                    {% endif %}
+                {% endif %}
+                {% if paginator.next_page %}
+                    {% assign next_url = paginator.next_page | prepend: 'page' | prepend: page_url | append: '/' | relative_url %}
+                {% endif %}
+            {% endunless %}
+
+            {% if paginator.total_pages > 1 %}
+                <div class="row mb-5">
+                    <div class="col-md-8">
+                        <nav aria-label="Page navigation example">
+                            <ul class="pagination justify-content-center">
+                                <li class="page-item{% unless paginator.previous_page %} disabled{% endunless %}">
+                                    <a class="page-link" {% if paginator.previous_page %}href="{{ prev_url }}"{% else %}tabindex="-1"{% endif %}>Newer</a>
+                                </li>
+                                <li class="page-item{% unless paginator.next_page %} disabled{% endunless %}">
+                                    <a class="page-link" {% if paginator.next_page %}href="{{ next_url }}"{% else %}tabindex="-1"{% endif %}>Older</a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            {% endif %}
+            <hr>
+        </div>
+    </div>
+    {% include footer.html %}
+</body>
+</html>
