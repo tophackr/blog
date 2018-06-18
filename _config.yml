@@ -25,4 +25,4 @@ markdown: kramdown
 timezone: Europe/Moscow
 encoding: utf-8
 permalink: /:year-:month-:day/:title/
-exclude: [".gitignore", Gemfile, Gemfile.lock, README.md]
+#exclude: [".gitignore"]
