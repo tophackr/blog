@@ -6,14 +6,14 @@ repository: 'https://gitlab.com/tophackr/blog'
 email: tophackr@icloud.com
 logo: '/assets/brand.svg'
 services:
-  - name: Contact
-    url: mailto:tophackr@icloud.com
-  - name: Anonymous Cloud Storage
+  - name: topdisk
     url: https://topdi.sk
-  - name: Theme for TeamSpeak 3
-    url: https://toptheme.ga
+  - name: toptheme
+    url: https://gitlab.com/tophackr/toptheme
   - name: Status
     url: https://status.tophackr.com
+  - name: Contact
+    url: mailto:tophackr@icloud.com
 
 paginate: 1
 jekyll-mentions: /u
